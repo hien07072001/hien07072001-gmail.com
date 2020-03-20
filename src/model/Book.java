@@ -1,25 +1,21 @@
 package model;
 
 public class Book {
-//  id: la số  nguyên 3 chữ  số ,tư động tăng
     private static  int id=100;
     private int bookID;
     private String bookName;
     private String author;
     private String specialization;
-//    specialization: phân looạ
     private int publishYear;
     private  int quantity;
 //    quantity: so luong
-
-
     public Book() {
     }
     public Book(int bookID, String bookName,
                 String author, String specialization, int publishYear, int quantity) {
         if (bookID==0) {
             this.bookID = id++;
-//
+
         }else {
             this.bookID=bookID;
         }

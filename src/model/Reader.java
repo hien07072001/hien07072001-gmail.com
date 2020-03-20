@@ -1,8 +1,6 @@
 package model;
 
 public class Reader {
-//    idreader:la so nuyen co 4 chu so ,tu dong tang
-
     private static int id=1000;
     private int readerID;
     private String fullName;
@@ -18,7 +16,7 @@ public class Reader {
 
     public Reader(int readerID, String fullName,
                   String address, String phoneNumber) {
-        if (readerID==0){
+        if (readerID == 0){
             this.readerID=id++;
 
         }else {

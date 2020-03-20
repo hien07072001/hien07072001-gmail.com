@@ -15,7 +15,7 @@ public class DataController {
     private BufferedWriter bufferedWriter;
     private PrintWriter printWriter;
     private Scanner scanner;
-
+//mở file viết
     public void openFileToWrite(String fileName){
         try {
             fileWriter=new FileWriter(fileName,true);
@@ -27,6 +27,50 @@ public class DataController {
             e.printStackTrace();
         }
     }
+
+    //viết sách vào file;
+    public void writeBookToFile(Book book,String fileName){
+        openFileToWrite(fileName);
+        printWriter.println(book.getBookID()+"|"+book.getBookName()+"|"
+                +book.getAuthor()+"|"+book.getSpecialization()+"|"+
+                book.getPublishYear()+"|"+book.getQuantity());
+        closeFileAfterWrite(fileName);
+
+    }
+
+    // viết người đọc vào file;
+    public void writeReaderToFile(Reader reader, String fileName){
+        openFileToWrite(fileName);
+        printWriter.println(reader.getReaderID()+"|"+reader.getFullName()+"|"
+                +reader.getAddress()+"|"+reader.getPhoneNumber());
+        closeFileAfterWrite(fileName);
+
+    }
+
+    //viết ngừời mượn sách vào file
+    public void writeBRMToFile(BookReaderManagement brm, String fileName){
+
+        openFileToWrite(fileName);
+        printWriter.println(brm.getReader().getReaderID()+"|"+brm.getBook().getBookID()+"|"
+                +brm.getNumOffBorrow()+"|"+brm.getState());
+        closeFileAfterWrite(fileName);
+
+    }
+
+    //đóng file sau khi viết;
+    public void closeFileAfterWrite(String fileName){
+        try {
+            printWriter.close();
+            bufferedWriter.close();
+            fileWriter.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+//    mở file đọc
     public void openFileToRead(String fileName){
         try {
             File file=new File(fileName);
@@ -41,6 +85,7 @@ public class DataController {
         }
     }
 
+// đóng file sau khi đọc
     public void closeFileAfterReader(String fileName){
         try {
             scanner.close();
@@ -50,44 +95,7 @@ public class DataController {
 
     }
 
-   public void writeBookToFile(Book book,String fileName){
-        openFileToWrite(fileName);
-        printWriter.println(book.getBookID()+"|"+book.getBookName()+"|"
-                +book.getAuthor()+"|"+book.getSpecialization()+"|"+
-                book.getPublishYear()+"|"+book.getQuantity());
-        closeFileAfterWrite(fileName);
-
-    }
-
-   public void writeReaderToFile(Reader reader, String fileName){
-        openFileToWrite(fileName);
-        printWriter.println(reader.getReaderID()+"|"+reader.getFullName()+"|"
-                +reader.getAddress()+"|"+reader.getPhoneNumber());
-        closeFileAfterWrite(fileName);
-
-    }
-
-   public void writeBRMToFile(BookReaderManagement brm, String fileName){
-
-        openFileToWrite(fileName);
-        printWriter.println(brm.getReader().getReaderID()+"|"+brm.getBook().getBookID()+"|"
-                +brm.getNumOffBorrow()+"|"+brm.getState());
-        closeFileAfterWrite(fileName);
-
-    }
-
-   public void closeFileAfterWrite(String fileName){
-        try {
-            printWriter.close();
-            bufferedWriter.close();
-            fileWriter.close();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
-
+// mảng người đọc từ file
     public ArrayList<Reader> readReadersFromFile(String fileName){
         openFileToRead(fileName);
         ArrayList<Reader> readers=new ArrayList<>();
@@ -106,7 +114,7 @@ public class DataController {
         Reader reader=new Reader(Integer.parseInt(datas[0]),datas[1],datas[2],datas[3]);
         return reader;
     }
-
+//mảng đọc sách từ file
     public ArrayList<Book> readBooksFromFile(String fileName){
         openFileToRead(fileName);
         ArrayList<Book> books=new ArrayList<>();
@@ -128,7 +136,7 @@ public class DataController {
         return book;
 
     }
-
+//mảng người đọc từ file
     public ArrayList<BookReaderManagement> readBRMsFromFile(String fileName){
 
         ArrayList<Book> books=readBooksFromFile("BOOK.txt");

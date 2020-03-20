@@ -1,5 +1,3 @@
-101|hien|hien1|hien|12|1
-102|ka|ka|a|12|1
-103|hien||hien|1|1
-104|Hiền|a|a|1|3105|dsk|msd|s|20|1
+103|hien|a|hien|1|1
 105|hien|hien1|it|201|1
+106|toan|abc|acc|201|200
